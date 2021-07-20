@@ -1,5 +1,7 @@
 @extends('admin/layout')
 
+@section('title', 'Manage Category')
+
 @section('content')
 
 
@@ -8,7 +10,17 @@
     <a href="{{ route('admin.createCategory') }}">
         <button type="button" class="btn btn-success">Add Category</button>
     </a>
-   
+
+
+    <div class="result">
+        @if (Session::has('success'))
+           <span class="alert alert-success" role="alert">
+            {{ Session::get('success') }}
+           </span>
+        @endif
+    </div>
+
+
     <div class="row m-t-30">
         <div class="col-md-12">
             <!-- DATA TABLE-->

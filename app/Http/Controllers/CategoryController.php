@@ -18,16 +18,30 @@ class CategoryController extends Controller
                 return view('admin/create_category');
             }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  
+            public function store_category(Request $request)
+            {
+                $request->validate([
+                    'category_name' => 'required | unique:categories',
+                    'category_slug' => 'required | unique:categories'
+                ]);
+
+                $userInput = new Category();
+
+                $userInput->category_name = $request->input('category_name');
+                $userInput->category_slug = $request->input('category_slug');
+
+                $userInput->save();
+
+                if($userInput) {
+
+                    session()->flash('success', 'Category created Successfully!');
+
+                    return redirect()->route('admin.category');
+                    
+                }
+
+            }
 
     /**
      * Display the specified resource.
@@ -37,7 +51,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        
     }
 
     /**
