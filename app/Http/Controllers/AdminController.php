@@ -51,9 +51,20 @@ class AdminController extends Controller
                 $result->save();
 
                 if($result){
-                    
+
                     echo "Your password is updated with encryption!!";
                 }
+
+                /** to dot it please access below rul
+                 * and then it will works 
+                 * 
+                 * http://localhost:8000/admin/password_encript
+                 * 
+                 * because
+                 * 
+                 * there no any view for dot it
+                 * thats why need to access url to do it
+                 */
 
             }
 
