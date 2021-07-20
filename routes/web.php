@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +24,9 @@ Route::post('admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
 
 Route::group(['middleware' => 'admin_auth'], function() {
 
-    Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard']);
-    Route::get('admin/category', [CategoryController::class, 'index']);
+    Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('admin/category', [CategoryController::class, 'index'])->name('admin.category');
+    Route::get('admin/create_category', [CategoryController::class, 'category_create'])->name('admin.createCategory');
     
 });
 
