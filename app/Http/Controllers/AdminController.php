@@ -9,8 +9,17 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     
-            public function index()
+            public function index(Request $request)
             {
+                if($request->session()->has('ADMIN_LOGIN')) {
+
+                    return redirect()->route('admin.dashboard');
+                    
+                } else {
+
+                    return view('admin.login');
+                }
+
                 return view('admin.login');
             }
 
