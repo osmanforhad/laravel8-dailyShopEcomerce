@@ -44,7 +44,12 @@
                             <td>{{ $custom_id++ }}</td>
                             <td>{{ $category->category_name }}</td>
                             <td>{{ $category->category_slug }}</td>
-                            <td></td>
+                            <td>
+                                <a href="{{url('admin/category/delete/')}}/{{$category->id}}">
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </a>
+                               
+                            </td>
                         </tr>
                         @endforeach
 
