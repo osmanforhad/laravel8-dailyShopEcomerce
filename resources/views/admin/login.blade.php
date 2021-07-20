@@ -41,6 +41,15 @@
                                 {{ Config::get('constants.site_name'); }}
                             </a>
                         </div>
+                       
+                        <div class="result">
+                            @if (Session::has('success-message'))
+                                <span class="alert alert-success" role="alert">
+                                    {{ Session::get('success-message') }}
+                                </span>
+                            @endif
+                        </div>
+
                         <div class="login-form">
                             <form action="{{ route('admin.auth') }}" method="post">
                                 @csrf
@@ -54,9 +63,15 @@
                                 </div>
                                
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
-                                <div class="alert alert-danger" role="alert">
-                                    {{session('error')}}
+                               
+                                <div class="result">
+                                    @if (Session::has('error'))
+                                        <span class="alert alert-danger" role="alert">
+                                            {{ Session::get('error') }}
+                                        </span>
+                                    @endif
                                 </div>
+
                             </form>
             
                         </div>

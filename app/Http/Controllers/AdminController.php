@@ -80,4 +80,15 @@ class AdminController extends Controller
 
             }
 
+            public function logoutAdmin()
+            {
+                session()->forget('ADMIN_LOGIN', true);
+
+                session()->forget('ADMIN_ID');
+
+                session()->flash('success-message', 'Logout successfully!');
+    
+                return redirect()->route('admin.login');
+            }
+
 }
