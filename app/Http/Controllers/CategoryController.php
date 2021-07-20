@@ -9,7 +9,13 @@ class CategoryController extends Controller
 {
             public function index()
             {
-                return view('admin/category');
+                $categories = Category::orderBy('created_at', 'DESC')->get()->all();
+
+                return view('admin/category', [
+                    'categories' => $categories
+                ]);
+
+                //return view('admin/category', $categories);
             }
 
     
