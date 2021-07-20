@@ -45,10 +45,16 @@
                             <td>{{ $category->category_name }}</td>
                             <td>{{ $category->category_slug }}</td>
                             <td>
-                                <a href="{{url('admin/category/delete/')}}/{{$category->id}}">
+                                <a href="{{ url('admin/category/edit/'.$category->id) }}" class="btn btn-primary btn-sm">Edit</a>
+
+                                {{-- <a href="{{url('admin/category/delete/')}}/{{$category->id}}">
                                     <button type="button" class="btn btn-danger">Delete</button>
-                                </a>
-                               
+                                </a> --}}
+                                            <form action="{{ url('admin/category/delete/'.$category->id) }}" method="POST" style="margin-top:10px;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
                             </td>
                         </tr>
                         @endforeach

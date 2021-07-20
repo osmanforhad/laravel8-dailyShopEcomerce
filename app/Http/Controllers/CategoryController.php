@@ -49,7 +49,20 @@ class CategoryController extends Controller
 
             }
 
-            public function destroy_category(Request $request, $id)
+            public function edit_category($id)
+            {
+                //fetch Category by id
+                $selected_category = Category::find($id);
+
+                if($selected_category) {
+
+                    return view('admin.category_edit', compact('selected_category'));
+                }
+
+            }
+
+
+            public function destroy_category($id)
             {
                 
                 $user_request = Category::find($id);
