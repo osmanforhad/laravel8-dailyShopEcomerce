@@ -38,8 +38,10 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                        <a class="logo" href="{{ route('admin.dashboard') }}">
+                            <img src="{{ asset('admin_assets/images/icon/logo.png') }}" alt="Cool Admin" />
+                                ||
+                                {{ Config::get('constants.site_name', 'Dailyshop Admin'); }}
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -71,8 +73,10 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="{{ route('admin.dashboard') }}">
                     <img src="{{ asset('admin_assets/images/icon/logo.png') }}" alt="Cool Admin" />
+                            ||
+                            {{ Config::get('constants.site_name', 'Dailyshop Admin'); }}
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -109,7 +113,7 @@
                                     <div class="account-item clearfix js-item-menu">
                                         
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#">Welcome Admin</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             
