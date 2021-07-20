@@ -44,7 +44,7 @@
                         </div>
                         <div>
                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                Save
+                                Update
                             </button>
                         </div>
                     </form>
