@@ -32,7 +32,7 @@ Route::group(['middleware' => 'admin_auth'], function() {
     //Route::get('admin/category/delete/{id}', [CategoryController::class, 'destroy_category']);
     Route::delete('admin/category/delete/{id}', [CategoryController::class, 'destroy_category']);
     Route::get('admin/category/edit/{id}', [CategoryController::class, 'edit_category']);
-    Route::put('admin/category/edit/{id}', [CategoryController::class, 'update_category'])->name('category.update');
+    Route::put('admin/category/edit/{id}', [CategoryController::class, 'update_category']);
 
 
     

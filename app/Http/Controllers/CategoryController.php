@@ -27,6 +27,7 @@ class CategoryController extends Controller
   
             public function store_category(Request $request)
             {
+                //input validation
                 $request->validate([
                     'category_name' => 'required | unique:categories',
                     'category_slug' => 'required | unique:categories'
@@ -58,6 +59,32 @@ class CategoryController extends Controller
 
                     return view('admin.category_edit', compact('selected_category'));
                 }
+
+            }
+
+            public function update_category(Request $request, $id)
+            {
+        
+                //fetch category by id
+                $user_input = Category::find($id);
+        
+                //input validation
+                $request->validate([
+                    'category_name' => 'required | unique:categories',
+                    'category_slug' => 'required'
+                ]);
+        
+        
+                $user_input->category_name = $request->input('category_name');
+                $user_input->category_slug = $request->input('category_slug');
+
+                 $result = $user_input->update();
+
+                 if($result) {
+
+                    return redirect()->route('admin.category')->with('success', 'Category Updated Successfully');
+
+                 }
 
             }
 

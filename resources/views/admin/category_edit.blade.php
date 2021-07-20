@@ -19,7 +19,7 @@
                 <div class="card-header text-center">Edit Product Category</div>
 
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="{{ url('admin/category/edit/'.$selected_category->id) }}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
