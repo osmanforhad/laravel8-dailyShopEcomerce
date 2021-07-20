@@ -18,4 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('admin', [AdminController::class, 'index']);
+Route::post('admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
+
+Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard']);
+
+Route::get('admin/category', [CategoryController::class, 'index']);
