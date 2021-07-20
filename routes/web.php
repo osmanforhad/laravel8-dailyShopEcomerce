@@ -21,6 +21,11 @@ Route::get('/', function () {
 Route::get('admin', [AdminController::class, 'index']);
 Route::post('admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
 
-Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard']);
+Route::group(['middleware' => 'admin_auth'], function() {
 
-Route::get('admin/category', [CategoryController::class, 'index']);
+    Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard']);
+    Route::get('admin/category', [CategoryController::class, 'index']);
+    
+});
+
+
