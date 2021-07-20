@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -39,6 +40,21 @@ class AdminController extends Controller
             public function AdminDashboard()
             {
                 return view('admin.dashboard');
+            }
+
+            public function updatePassword()
+            {
+                $result = Admin::find(1);
+
+                $result->password = Hash::make('12345678');
+
+                $result->save();
+
+                if($result){
+                    
+                    echo "Your password is updated with encryption!!";
+                }
+
             }
 
 }
