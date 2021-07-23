@@ -30,13 +30,15 @@ class CategoryController extends Controller
                 //input validation
                 $request->validate([
                     'category_name' => 'required | unique:categories',
-                    'category_slug' => 'required | unique:categories'
+                    'category_slug' => 'required | unique:categories',
+                    'category_status' => 'required'
                 ]);
 
                 $userInput = new Category();
 
                 $userInput->category_name = $request->input('category_name');
                 $userInput->category_slug = $request->input('category_slug');
+                $userInput->category_status = $request->input('category_status');
 
                 $userInput->save();
 
@@ -71,12 +73,14 @@ class CategoryController extends Controller
                 //input validation
                 $request->validate([
                     'category_name' => 'required | unique:categories',
-                    'category_slug' => 'required'
+                    'category_slug' => 'required',
+                    'category_status' => 'required'
                 ]);
         
         
                 $user_input->category_name = $request->input('category_name');
                 $user_input->category_slug = $request->input('category_slug');
+                $user_input->category_status = $request->input('category_status');
 
                  $result = $user_input->update();
 

@@ -53,6 +53,18 @@
                                 @enderror
                              </span>
                         </div>
+                        <div class="form-group">
+                            <label for="coupon_status" class="control-label mb-1">Status</label>
+                            <select class="form-control" name="coupon_status">
+                                <option value="1">Active</option>
+                                <option value="0">Deactive</option>
+                            </select>
+                            <span class="alret alert-danger" role="alert">
+                                @error('coupon_status')
+                                {{$message}}
+                                @enderror
+                             </span>
+                        </div>
                         <div>
                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                 Save

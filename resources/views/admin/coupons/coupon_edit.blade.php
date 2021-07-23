@@ -54,6 +54,18 @@
                                 @enderror
                              </span>
                         </div>
+                        <div class="form-group">
+                            <label for="coupon_status" class="control-label mb-1">Staus</label>
+                            <select class="form-control" name="coupon_status">
+                                <option value="1" {{($selected_coupon->coupon_status === '1') ? 'Selected' : ''}}>Active</option>
+                                <option value="0" {{($selected_coupon->coupon_status === '0') ? 'Selected' : ''}}>Deactive</option>
+                            </select>
+                            <span class="alret alert-danger" role="alert">
+                                @error('coupon_status')
+                                {{$message}}
+                                @enderror
+                             </span>
+                        </div>
                         <div>
                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                 Update

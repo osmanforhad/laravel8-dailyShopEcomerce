@@ -43,6 +43,18 @@
                                 @enderror
                              </span>
                         </div>
+                        <div class="form-group">
+                            <label for="category_status" class="control-label mb-1">Status</label>
+                            <select class="form-control" name="category_status">
+                                <option value="active">Active</option>
+                                <option value="deactive">Deactive</option>
+                            </select>
+                            <span class="alret alert-danger" role="alert">
+                                @error('category_status')
+                                {{$message}}
+                                @enderror
+                             </span>
+                        </div>
                         <div>
                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                 Save

@@ -34,6 +34,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Slug</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -47,6 +48,15 @@
                             <td>{{ $custom_id++ }}</td>
                             <td>{{ $category->category_name }}</td>
                             <td>{{ $category->category_slug }}</td>
+                            {{-- <td>{{ $category->category_status }}</td> --}}
+                            <td>
+                            @if ($category->category_status === 'active')
+                            <p class="alert alert-success" role="alert"><b>{{ $category->category_status }}</b></p>
+                              @else
+                              <p class="alert alert-danger" role="alert">{{ $category->category_status }}</p>
+                            @endif
+                            </td>
+
                             <td>
                                 <a href="{{ url('admin/category/edit/'.$category->id) }}" class="btn btn-primary btn-sm">Edit</a>
 

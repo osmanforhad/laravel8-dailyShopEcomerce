@@ -35,6 +35,7 @@
                             <th>Title</th>
                             <th>Code</th>
                             <th>Value</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -49,6 +50,13 @@
                            <td>{{ $coupon->title }}</td>
                            <td>{{ $coupon->code }}</td>
                            <td>{{ $coupon->value }}</td>
+                           <td>
+                            @if ($coupon->coupon_status === 1)
+                            <p class="alert alert-success" role="alert"><b>Active</b></p>
+                              @else
+                              <p class="alert alert-danger" role="alert">Deactive</p>
+                            @endif
+                            </td>
                            <td>
                                <a href="{{ url('admin/coupon/edit/'.$coupon->id) }}" class="btn btn-primary btn-sm">Edit</a>
 

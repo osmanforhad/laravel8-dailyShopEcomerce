@@ -31,7 +31,8 @@ class CouponController extends Controller
                     $request->validate([
                         'title' => 'required | unique:coupons',
                         'code' => 'required | unique:coupons',
-                        'value' => 'required | unique:coupons',
+                        'value' => 'required',
+                        'coupon_status' => 'required'
                     ]);
 
                     $userInput = new Coupon();
@@ -39,6 +40,7 @@ class CouponController extends Controller
                     $userInput->title = $request->input('title');
                     $userInput->code = $request->input('code');
                     $userInput->value = $request->input('value');
+                    $userInput->coupon_status = $request->input('coupon_status');
 
                     $result = $userInput->save();
 
@@ -75,12 +77,14 @@ class CouponController extends Controller
                     'title' => 'required | unique:coupons',
                     'code' => 'required',
                     'value' => 'required',
+                    'coupon_status' => 'required',
                 ]);
         
         
                 $user_input->title = $request->input('title');
                 $user_input->code = $request->input('code');
                 $user_input->value = $request->input('value');
+                $user_input->coupon_status = $request->input('coupon_status');
 
                  $result = $user_input->update();
 
