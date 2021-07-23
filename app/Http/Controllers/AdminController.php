@@ -17,10 +17,10 @@ class AdminController extends Controller
                     
                 } else {
 
-                    return view('admin.login');
+                    return view('admin.adminLogin.login');
                 }
 
-                return view('admin.login');
+                
             }
 
 
@@ -60,7 +60,7 @@ class AdminController extends Controller
 
             public function AdminDashboard()
             {
-                return view('admin.dashboard');
+                return view('admin.dashboardHome.home');
             }
 
             public function updatePassword()
