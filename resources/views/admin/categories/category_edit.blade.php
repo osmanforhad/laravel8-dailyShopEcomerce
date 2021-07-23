@@ -2,6 +2,8 @@
 
 @section('title', 'Edit Category')
 
+@section('category_select', 'active')
+
 @section('content')
 
 

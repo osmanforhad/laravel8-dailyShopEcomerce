@@ -2,6 +2,8 @@
 
 @section('title', 'Manage Coupon')
 
+@section('coupon_select', 'active')
+
 @section('content')
 
 
