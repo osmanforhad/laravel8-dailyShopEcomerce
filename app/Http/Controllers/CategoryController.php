@@ -11,7 +11,7 @@ class CategoryController extends Controller
             {
                 $categories = Category::orderBy('created_at', 'DESC')->get()->all();
 
-                return view('admin/category', [
+                return view('admin/categories/category', [
                     'categories' => $categories
                 ]);
 
@@ -21,7 +21,7 @@ class CategoryController extends Controller
     
             public function category_create()
             {
-                return view('admin/create_category');
+                return view('admin/categories/create_category');
             }
 
   
@@ -57,7 +57,7 @@ class CategoryController extends Controller
 
                 if($selected_category) {
 
-                    return view('admin.category_edit', compact('selected_category'));
+                    return view('admin.categories.category_edit', compact('selected_category'));
                 }
 
             }

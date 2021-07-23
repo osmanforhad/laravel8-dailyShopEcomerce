@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CouponController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,14 @@ Route::group(['middleware' => 'admin_auth'], function() {
     Route::put('admin/category/edit/{id}', [CategoryController::class, 'update_category']);
     //Route::get('admin/category/delete/{id}', [CategoryController::class, 'destroy_category']);
     Route::delete('admin/category/delete/{id}', [CategoryController::class, 'destroy_category']);
+
+    Route::get('admin/coupon', [CouponController::class, 'index'])->name('admin.coupon');
+    Route::get('admin/coupon/create', [CouponController::class, 'coupon_create'])->name('admin.createCoupon');
+    Route::post('admin/coupon/save', [CouponController::class, 'store_coupon'])->name('coupon.save');
+    Route::get('admin/coupon/edit/{id}', [CouponController::class, 'edit_coupon']);
+    Route::put('admin/coupon/edit/{id}', [CouponController::class, 'update_coupon']);
+    //Route::get('admin/coupon/delete/{id}', [CouponController::class, 'destroy_coupon']);
+    Route::delete('admin/coupon/delete/{id}', [CouponController::class, 'destroy_coupon']);
 
 
     

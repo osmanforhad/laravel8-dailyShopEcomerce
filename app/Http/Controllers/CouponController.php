@@ -7,79 +7,105 @@ use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+                public function index()
+                {
+                    $coupons = Coupon::orderBy('created_at', 'DESC')->get()->all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+                    return view('admin/coupons/coupon', [
+                        'coupons' => $coupons
+                    ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+                    //return view('admin/category', $categories);
+                }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Coupon  $coupon
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Coupon $coupon)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Coupon  $coupon
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Coupon $coupon)
-    {
-        //
-    }
+                public function coupon_create()
+                {
+                    return view('admin/coupons/create_coupon');
+                }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Coupon  $coupon
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Coupon $coupon)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Coupon  $coupon
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Coupon $coupon)
-    {
-        //
-    }
+                public function store_coupon(Request $request)
+                {
+                    //input validation
+                    $request->validate([
+                        'title' => 'required | unique:coupons',
+                        'code' => 'required | unique:coupons',
+                        'value' => 'required | unique:coupons',
+                    ]);
+
+                    $userInput = new Coupon();
+
+                    $userInput->title = $request->input('title');
+                    $userInput->code = $request->input('code');
+                    $userInput->value = $request->input('value');
+
+                    $result = $userInput->save();
+
+                    if($result) {
+
+                        session()->flash('success', 'Coupon created Successfully!');
+
+                        return redirect()->route('admin.coupon');
+                        
+                    }
+
+                }
+
+                public function edit_coupon($id)
+                {
+                    //fetch Coupon by id
+                    $selected_coupon = Coupon::find($id);
+
+                    if($selected_coupon) {
+
+                        return view('admin.coupons.coupon_edit', compact('selected_coupon'));
+                    }
+
+                }
+
+                public function update_coupon(Request $request, $id)
+                {
+
+                     //find coupon by id
+                $user_input = Coupon::find($id);
+        
+                //input validation
+                $request->validate([
+                    'title' => 'required | unique:coupons',
+                    'code' => 'required',
+                    'value' => 'required',
+                ]);
+        
+        
+                $user_input->title = $request->input('title');
+                $user_input->code = $request->input('code');
+                $user_input->value = $request->input('value');
+
+                 $result = $user_input->update();
+
+                    if($result) {
+
+                        return redirect()->route('admin.coupon')->with('success', 'Coupon Updated Successfully');
+
+                    }
+
+                }
+
+
+                public function destroy_coupon($id)
+                {
+                    
+                    $user_request = Coupon::find($id);
+
+                    $user_request->delete();
+
+                    if($user_request) {
+
+                        session()->flash('success', 'Coupon deleted Successfully!');
+
+                        return redirect()->route('admin.coupon');
+                    }
+
+                }
 }

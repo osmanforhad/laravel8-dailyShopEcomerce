@@ -25,6 +25,7 @@
         <div class="col-md-12">
             <!-- DATA TABLE-->
             <div class="table-responsive m-b-40">
+                @if (count($categories) > 0)
                 <table class="table table-borderless table-data3">
                     <thead>
                         <tr>
@@ -61,6 +62,10 @@
 
                     </tbody>
                 </table>
+                @else
+                <h4 class="text-center">There is no record in our Database</h4>
+                <hr>
+                @endif
             </div>
             <!-- END DATA TABLE-->
         </div>
