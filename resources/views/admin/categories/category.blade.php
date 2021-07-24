@@ -13,14 +13,14 @@
         <button type="button" class="btn btn-success">Add Category</button>
     </a>
 
-
-    <div class="result">
-        @if (Session::has('success'))
-           <span class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-           </span>
-        @endif
+    @if (Session::has('success'))
+    <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                {{ Session::get('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
     </div>
+    @endif
 
 
     <div class="row m-t-30">
