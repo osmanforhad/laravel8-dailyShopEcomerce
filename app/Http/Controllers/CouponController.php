@@ -15,7 +15,7 @@ class CouponController extends Controller
                         'coupons' => $coupons
                     ]);
 
-                    //return view('admin/category', $categories);
+                    
                 }
 
 
