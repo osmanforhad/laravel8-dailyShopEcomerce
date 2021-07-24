@@ -69,9 +69,9 @@
                                 <i class="fas fa-tag"></i>Coupon</a>
                           
                         </li>
-                        <li class="@yield('size_select')">
-                            <a href="{{ route('admin.size') }}">
-                                <i class="fas fa-window-maximize"></i>Sizes</a>
+                        <li class="@yield('color_select')">
+                            <a href="{{ route('admin.color') }}">
+                                <i class="fas fa-eye-dropper"></i>Colors</a>
                           
                         </li>
                     </ul>
@@ -109,6 +109,10 @@
                         <li class="@yield('size_select')">
                             <a href="{{ route('admin.size') }}">
                                 <i class="fas fa-window-maximize"></i>Sizes</a>
+                        </li>
+                        <li class="@yield('color_select')">
+                            <a href="{{ route('admin.color') }}">
+                                <i class="fas fa-eye-dropper"></i>Colors</a>
                         </li>
                 </nav>
             </div>

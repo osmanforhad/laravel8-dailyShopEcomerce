@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
@@ -49,8 +50,16 @@ Route::group(['middleware' => 'admin_auth'], function() {
     Route::post('admin/size/save', [SizeController::class, 'store_size'])->name('size.save');
     Route::get('admin/size/edit/{id}', [SizeController::class, 'edit_size']);
     Route::put('admin/size/update/{id}', [SizeController::class, 'update_size']);
-    //Route::get('admin/size/delete/{id}', [CouponController::class, 'destroy_coupon']);
+    //Route::get('admin/size/delete/{id}', [SizeController::class, 'destroy_size']);
     Route::delete('admin/size/delete/{id}', [SizeController::class, 'destroy_size']);
+
+    Route::get('admin/color', [ColorController::class, 'index'])->name('admin.color');
+    Route::get('admin/color/create', [ColorController::class, 'color_create'])->name('admin.createColor');
+    Route::post('admin/color/save', [ColorController::class, 'store_color'])->name('color.save');
+    Route::get('admin/color/edit/{id}', [ColorController::class, 'edit_color']);
+    Route::put('admin/color/update/{id}', [ColorController::class, 'update_color']);
+    //Route::get('admin/color/delete/{id}', [ColorController::class, 'destroy_color']);
+    Route::delete('admin/color/delete/{id}', [ColorController::class, 'destroy_color']);
 
 
     
