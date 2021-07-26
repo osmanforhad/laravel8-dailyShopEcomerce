@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -36,7 +37,7 @@ class ProductController extends Controller
                     //input validation
                     $request->validate([
                         'name' => 'required | unique:products',
-                        'slug' => 'required | unique:products',
+                        //'slug' => 'required | unique:products',
                         'category_id' => 'required',
                         'brand' => 'required',
                         'image' => 'required | mimes:jpeg,png,jpg',
@@ -55,7 +56,7 @@ class ProductController extends Controller
                    
     
                      $userInput->name = $request->input('name'); 
-                    // //$userInput->name = $request->input('slug'); 
+                     //$userInput->name = $request->input('slug'); 
                      $userInput->slug = Str::slug($userInput->name, '_');
                      $userInput->category_id = $request->input('category_id');
                      $userInput->brand = $request->input('brand');
@@ -94,12 +95,20 @@ class ProductController extends Controller
     
                 public function edit_product($id)
                 {
+                    //fetch category
+                    $categories = Category::all();
+
                     //fetch product by id
-                    $selected_product = Product::find($id);
+                    $selected_product = Product::findOrFail($id);
     
                     if($selected_product) {
     
-                        return view('admin.products.product_edit', compact('selected_product'));
+                        return view('admin.products.product_edit', [
+
+                            'categories' => $categories,
+                            'selected_product' => $selected_product
+
+                        ]);
                     }
     
                 }
@@ -108,19 +117,62 @@ class ProductController extends Controller
                 {
             
                     //fetch product by id
-                    $user_input = Product::find($id);
+                    $user_input = Product::findOrFail($id);
             
-                    //input validation
-                    $request->validate([
-                        'name' => 'required | unique:products',
-                        'status' => 'required'
-                    ]);
+                  //input validation
+                //   $request->validate([
+                //     'name' => 'required | unique:products',
+                //     //'slug' => 'required | unique:products',
+                //     'category_id' => 'required',
+                //     'brand' => 'required',
+                //     'image' => 'required | mimes:jpeg,png,jpg',
+                //     'model' => 'required',
+                //     'short_desc' => 'required',
+                //     'desc' => 'required',
+                //     'keywords' => 'required',
+                //     'technical_spc' => 'required',
+                //     'uses' => 'required',
+                //     'warranty' => 'required',
+                //     'status' => 'required'
+                // ]);
             
             
-                    $user_input->name = $request->input('name');
+                    $user_input->name = $request->input('name'); 
+                    //$user_input->name = $request->input('slug'); 
+                    $user_input->slug = Str::slug($user_input->name, '_');
+                    $user_input->category_id = $request->input('category_id');
+                    $user_input->brand = $request->input('brand');
+                    $user_input->model = $request->input('model');
+                    $user_input->short_desc = $request->input('short_desc');
+                    $user_input->desc = $request->input('desc');
+                    $user_input->keywords = $request->input('keywords');
+                    $user_input->technical_spc = $request->input('technical_spc');
+                    $user_input->uses = $request->input('uses');
+                    $user_input->warranty = $request->input('warranty');
                     $user_input->status = $request->input('status');
+
+                    if ($request->hasFile('product_image')) {
+
+                        //define alreday exists image and delete it
+                        $destination = 'uploads/products/' . $user_input->image;
+                        if (File::exists($destination)) {
+                            
+                            File::delete($destination);
+                        }
+            
+                        $file = $request->file('product_image');
+                        //get file extension
+                        $extension = $file->getClientOriginalExtension();
+                        //setup file name
+                        $fileName = $user_input->name . '.' . $extension;
+                        //upload file into the folder
+                        $file->move('uploads/products/', $fileName);
+                        //store the image data into db
+                        $user_input->image = $fileName;
+                    }
     
-                     $result = $user_input->update();
+                    $result = $user_input->update();
+                
     
                      if($result) {
     
