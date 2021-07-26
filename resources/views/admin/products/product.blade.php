@@ -64,7 +64,7 @@
                             </td>
 
                             <td>
-                                <a href="{{ url('admin/product/edit/'.$product->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ url('admin/product/edit/'.$product->slug) }}" class="btn btn-primary btn-sm">Edit</a>
 
                                 {{-- <a href="{{url('admin/product/delete/')}}/{{$product->id}}">
                                     <button type="button" class="btn btn-danger">Delete</button>

@@ -40,7 +40,7 @@ class ProductController extends Controller
                         //'slug' => 'required | unique:products',
                         'category_id' => 'required',
                         'brand' => 'required',
-                        'image' => 'required | mimes:jpeg,png,jpg',
+                        'product_image' => 'required | mimes:jpeg,png,jpg',
                         'model' => 'required',
                         'short_desc' => 'required',
                         'desc' => 'required',
@@ -93,13 +93,13 @@ class ProductController extends Controller
     
                 }
     
-                public function edit_product($id)
+                public function edit_product($slug)
                 {
                     //fetch category
                     $categories = Category::all();
 
                     //fetch product by id
-                    $selected_product = Product::findOrFail($id);
+                    $selected_product = Product::where('slug', $slug)->first();
     
                     if($selected_product) {
     
@@ -117,24 +117,24 @@ class ProductController extends Controller
                 {
             
                     //fetch product by id
-                    $user_input = Product::findOrFail($id);
+                    $user_input = Product::find($id);
             
                   //input validation
-                //   $request->validate([
-                //     'name' => 'required | unique:products',
-                //     //'slug' => 'required | unique:products',
-                //     'category_id' => 'required',
-                //     'brand' => 'required',
-                //     'image' => 'required | mimes:jpeg,png,jpg',
-                //     'model' => 'required',
-                //     'short_desc' => 'required',
-                //     'desc' => 'required',
-                //     'keywords' => 'required',
-                //     'technical_spc' => 'required',
-                //     'uses' => 'required',
-                //     'warranty' => 'required',
-                //     'status' => 'required'
-                // ]);
+                  $request->validate([
+                    'name' => 'required | unique:products',
+                    //'slug' => 'required | unique:products',
+                    'category_id' => 'required',
+                    'brand' => 'required',
+                    'product_image' => 'required | mimes:jpeg,png,jpg',
+                    'model' => 'required',
+                    'short_desc' => 'required',
+                    'desc' => 'required',
+                    'keywords' => 'required',
+                    'technical_spc' => 'required',
+                    'uses' => 'required',
+                    'warranty' => 'required',
+                    'status' => 'required'
+                ]);
             
             
                     $user_input->name = $request->input('name'); 
@@ -172,6 +172,9 @@ class ProductController extends Controller
                     }
     
                     $result = $user_input->update();
+                    // $result = $user_input;
+
+                    // echo $result;
                 
     
                      if($result) {
