@@ -81,7 +81,12 @@
                             <select class="form-control" name="category_id">
                                 <option value="">Select Category</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                @if ($selected_product->category_id == $category->id )
+                                    <option selected value="{{$category->id}}">
+                                @else
+                                <option value="{{$category->id}}">
+                                @endif
+                                {{$category->category_name}}</option>
                                 @endforeach
                             </select>
                             <span class="alret alert-danger" role="alert">

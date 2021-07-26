@@ -23,7 +23,7 @@ class ProductController extends Controller
                 public function product_create()
                 {
                     //fetch category
-                    $categories = Category::all();
+                    $categories = Category::where('category_status', 'active')->get();
 
                     return view('admin/products/create_product', [
 
@@ -96,7 +96,7 @@ class ProductController extends Controller
                 public function edit_product($slug)
                 {
                     //fetch category
-                    $categories = Category::all();
+                    $categories = Category::where('category_status', 'active')->get();
 
                     //fetch product by id
                     $selected_product = Product::where('slug', $slug)->first();
