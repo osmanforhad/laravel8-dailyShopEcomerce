@@ -33,7 +33,9 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Slug</th>
+                            <th>Category</th>
+                            <th>Image</th>
+                            <th>Brand</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -47,13 +49,17 @@
                         <tr>
                             <td>{{ $custom_id++ }}</td>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->brand }}</td>
-                            {{-- <td>{{ $category->category_status }}</td> --}}
+                            <td>{{$product->fetchCategoryFromCategoryTable->category_name}}</td>
                             <td>
-                            @if ($product->status === 'active')
-                            <p class="alert alert-success" role="alert"><b>{{ $product->status }}</b></p>
+                                <img src="{{ asset('uploads/products/'.$product->image) }}"
+                                     width="70px" height="70px" alt="{{ $product->name }}">
+                            </td>
+                            <td>{{ $product->brand }}</td>
+                            <td>
+                            @if ($product->status === 1)
+                            <p class="alert alert-success" role="alert"><b>Active</b></p>
                               @else
-                              <p class="alert alert-danger" role="alert">{{ $product->status }}</p>
+                              <p class="alert alert-danger" role="alert">Deactive</p>
                             @endif
                             </td>
 

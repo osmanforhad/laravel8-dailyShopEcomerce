@@ -36,18 +36,18 @@ class ProductController extends Controller
                     //input validation
                     $request->validate([
                         'name' => 'required | unique:products',
-                        //'slug' => 'required | unique:products',
-                        // 'category_id' => 'required',
-                        // 'brand' => 'required',
-                        // 'image' => 'required | mimes:jpeg,png,jpg',
-                        // 'model' => 'required',
-                        // 'short_desc' => 'required',
-                        // 'desc' => 'required',
-                        // 'keywords' => 'required',
-                        // 'technical_spc' => 'required',
-                        // 'uses' => 'required',
-                        // 'warranty' => 'required',
-                        // 'status' => 'required'
+                        'slug' => 'required | unique:products',
+                        'category_id' => 'required',
+                        'brand' => 'required',
+                        'image' => 'required | mimes:jpeg,png,jpg',
+                        'model' => 'required',
+                        'short_desc' => 'required',
+                        'desc' => 'required',
+                        'keywords' => 'required',
+                        'technical_spc' => 'required',
+                        'uses' => 'required',
+                        'warranty' => 'required',
+                        'status' => 'required'
                     ]);
     
                     $userInput = new Product();
