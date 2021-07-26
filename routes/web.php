@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,14 @@ Route::group(['middleware' => 'admin_auth'], function() {
     Route::put('admin/color/update/{id}', [ColorController::class, 'update_color']);
     //Route::get('admin/color/delete/{id}', [ColorController::class, 'destroy_color']);
     Route::delete('admin/color/delete/{id}', [ColorController::class, 'destroy_color']);
+
+    Route::get('admin/product', [ProductController::class, 'index'])->name('admin.product');
+    Route::get('admin/product/create', [ProductController::class, 'product_create'])->name('admin.createProduct');
+    Route::post('admin/product/save', [ProductController::class, 'store_product'])->name('product.save');
+    Route::get('admin/product/edit/{id}', [ProductController::class, 'edit_product']);
+    Route::put('admin/product/update/{id}', [ProductController::class, 'update_product']);
+    //Route::get('admin/product/delete/{id}', [ProductController::class, 'destroy_product']);
+    Route::delete('admin/product/delete/{id}', [ProductController::class, 'destroy_product']);
 
 
     

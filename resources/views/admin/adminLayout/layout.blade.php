@@ -28,6 +28,7 @@
     <!-- Main CSS-->
     <link href="{{ asset('admin_assets/css/theme.css') }}" rel="stylesheet" media="all">
 
+    @stack('styles')
 </head>
 
 <body>
@@ -67,12 +68,14 @@
                         <li class="@yield('coupon_select')">
                             <a href="{{ route('admin.coupon') }}">
                                 <i class="fas fa-tag"></i>Coupon</a>
-                          
                         </li>
                         <li class="@yield('color_select')">
                             <a href="{{ route('admin.color') }}">
                                 <i class="fas fa-eye-dropper"></i>Colors</a>
-                          
+                        </li>
+                        <li class="@yield('product_select')">
+                            <a href="{{ route('admin.product') }}">
+                                <i class="fas fa-product-hunt"></i>Products</a>
                         </li>
                     </ul>
                 </div>
@@ -113,6 +116,10 @@
                         <li class="@yield('color_select')">
                             <a href="{{ route('admin.color') }}">
                                 <i class="fas fa-eye-dropper"></i>Colors</a>
+                        </li>
+                        <li class="@yield('product_select')">
+                            <a href="{{ route('admin.product') }}">
+                                <i class="fab fa-delicious"></i>Products</a>
                         </li>
                 </nav>
             </div>
@@ -204,6 +211,7 @@
     <!-- Main JS-->
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
 
+    @stack('scripts')
 </body>
 
 </html>

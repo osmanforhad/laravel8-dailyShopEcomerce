@@ -15,7 +15,7 @@ class CategoryController extends Controller
                     'categories' => $categories
                 ]);
 
-                //return view('admin/category', $categories);
+                
             }
 
     
