@@ -17,7 +17,7 @@
 
     <h1 class="mb10">Edit Product</h1>
 
-    <a href="{{ route('admin.category') }}">
+    <a href="{{ route('admin.product') }}">
         <button type="button" class="btn btn-success">Back</button>
     </a>
     <br>
@@ -42,42 +42,37 @@
                                 @enderror
                              </span>
                         </div>
+                        
+                        
                         <div class="form-group">
-                            <label for="brnad" class="control-label mb-1">Brand</label>
-                            <input id="brand" name="brand" value="{{ $selected_product->brand }}" type="text" class="form-control"
-                             aria-required="true" aria-invalid="false">
-                             <span class="alret alert-danger" role="alert">
-                                @error('brnad')
-                                {{$message}}
-                                @enderror
-                             </span>
-                        </div>
-                        <!-- Previw uploaded image -->
+                             <div class="row">
+
+                                 <div class="col-md-4">
+                                    <label for="product_image" class="control-label mb-1">Image</label>
+                                    <input type="file" name="product_image" class="form-control"
+                                    aria-required="true" aria-invalid="false" onchange="loadFile(event)">
+                                        <img src="{{ asset('uploads/products/'.$selected_product->image) }}"
+                                             width="70px" height="70px" alt="{{ $selected_product->name }}">
+                                     <span class="alret alert-danger" role="alert">
+                                        @error('product_image')
+                                        {{$message}}
+                                        @enderror
+                                     </span> 
+                                 </div>
+
+                                 <div class="col-md-4">
+                                     <!-- Previw uploaded image -->
                         <img id="preview_product_image" src="" class="preview_image_size"/>
-                        <div class="form-group">
-                            <label for="product_image" class="control-label mb-1">Image</label>
-                            <input type="file" name="product_image" class="form-control"
-                            aria-required="true" aria-invalid="false" onchange="loadFile(event)">
-                                <img src="{{ asset('uploads/products/'.$selected_product->image) }}"
-                                     width="70px" height="70px" alt="{{ $selected_product->name }}">
-                             <span class="alret alert-danger" role="alert">
-                                @error('product_image')
-                                {{$message}}
-                                @enderror
-                             </span>
+                                 </div>
+
+                             </div>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="model" class="control-label mb-1">Model</label>
-                            <input id="model" name="model" value="{{ $selected_product->model }}" type="text" class="form-control"
-                             aria-required="true" aria-invalid="false">
-                             <span class="alret alert-danger" role="alert">
-                                @error('model')
-                                {{$message}}
-                                @enderror
-                             </span>
-                        </div>
-                        <div class="form-group">
-                            <label for="category_id" class="control-label mb-1">Category</label>
+                            <div class="row">
+
+                            <div class="col-md-4">
+                             <label for="category_id" class="control-label mb-1">Category</label>
                             <select class="form-control" name="category_id">
                                 <option value="">Select Category</option>
                                 @foreach ($categories as $category)
@@ -94,6 +89,31 @@
                                 {{$message}}
                                 @enderror
                              </span>
+                                </div>
+
+                                <div class="col-md-4">
+                                <label for="brnad" class="control-label mb-1">Brand</label>
+                                <input id="brand" name="brand" value="{{ $selected_product->brand }}" type="text" class="form-control"
+                                    aria-required="true" aria-invalid="false">
+                                    <span class="alret alert-danger" role="alert">
+                                    @error('brnad')
+                                    {{$message}}
+                                    @enderror
+                                    </span>
+                                </div>
+
+                                <div class="col-md-4">
+                            <label for="model" class="control-label mb-1">Model</label>
+                            <input id="model" name="model" value="{{ $selected_product->model }}" type="text" class="form-control"
+                             aria-required="true" aria-invalid="false">
+                             <span class="alret alert-danger" role="alert">
+                                @error('model')
+                                {{$message}}
+                                @enderror
+                             </span>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="short_desc" class="control-label mb-1">Short Description</label>

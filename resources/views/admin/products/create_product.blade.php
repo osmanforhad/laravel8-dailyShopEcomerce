@@ -52,6 +52,9 @@
                              </span>
                         </div> --}}
                         <div class="form-group">
+                          <div class="row">
+
+                            <div class="col-md-4">
                             <label for="category_id" class="control-label mb-1">Category</label>
                             <select class="form-control" name="category_id">
                                 <option value="">Select Category</option>
@@ -63,40 +66,57 @@
                                 @error('category_id')
                                 {{$message}}
                                 @enderror
-                             </span>
-                        </div>
-                        <div class="form-group">
-                            <label for="brand" class="control-label mb-1">Brand</label>
-                            <input id="brand" name="brand" type="text" class="form-control"
-                             aria-required="true" aria-invalid="false">
-                             <span class="alret alert-danger" role="alert">
-                                @error('brand')
-                                {{$message}}
-                                @enderror
-                             </span>
-                        </div>
-                        <!-- Previw uploaded image -->
-                        <img id="preview_product_image" src="" class="preview_image_size"/>
-                        <div class="form-group">
-                            <label for="product_image" class="control-label mb-1">Image</label>
-                            <input id="product_image" name="product_image" type="file" class="form-control"
-                             aria-required="true" aria-invalid="false" onchange="loadFile(event)">
-                             <span class="alret alert-danger" role="alert">
-                                @error('product_image')
-                                {{$message}}
-                                @enderror
-                             </span>
-                        </div>
-                        <div class="form-group">
+                                </span>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label for="brand" class="control-label mb-1">Brand</label>
+                                <input id="brand" name="brand" type="text" class="form-control"
+                                 aria-required="true" aria-invalid="false">
+                                 <span class="alret alert-danger" role="alert">
+                                    @error('brand')
+                                    {{$message}}
+                                    @enderror
+                                 </span>
+                              </div>
+
+                              <div class="col-md-4">
                             <label for="model" class="control-label mb-1">Model</label>
                             <input id="model" name="model" type="text" class="form-control"
-                             aria-required="true" aria-invalid="false">
-                             <span class="alret alert-danger" role="alert">
+                                aria-required="true" aria-invalid="false">
+                                <span class="alret alert-danger" role="alert">
                                 @error('model')
                                 {{$message}}
                                 @enderror
-                             </span>
+                                </span>
+                              </div>
+
+                          </div>
                         </div>
+                        
+                        
+                        <div class="form-group">
+                             <div class="row">
+
+                                 <div class="col-md-4">
+                                    <label for="product_image" class="control-label mb-1">Image</label>
+                                    <input id="product_image" name="product_image" type="file" class="form-control"
+                                     aria-required="true" aria-invalid="false" onchange="loadFile(event)">
+                                     <span class="alret alert-danger" role="alert">
+                                        @error('product_image')
+                                        {{$message}}
+                                        @enderror
+                                     </span>
+                                 </div>
+
+                                 <div class="col-md-4">
+                                     <!-- Previw uploaded image -->
+                        <img id="preview_product_image" src="" class="preview_image_size"/>
+                                 </div>
+
+                             </div>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="short_desc" class="control-label mb-1">Short Description</label>
                             <textarea id="short_desc" name="short_desc" type="text" class="form-control"
