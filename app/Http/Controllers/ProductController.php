@@ -172,10 +172,6 @@ class ProductController extends Controller
                     }
     
                     $result = $user_input->update();
-                    // $result = $user_input;
-
-                    // echo $result;
-                
     
                      if($result) {
     
@@ -190,10 +186,16 @@ class ProductController extends Controller
                 {
                     
                     $user_request = Product::find($id);
+
+                //define alreday exists image and delete it
+                    $destination = 'uploads/products/' . $user_request->image;
+                    if (File::exists($destination)) {
+                        File::delete($destination);
+                    }
     
-                    $user_request->delete();
+                   $result = $user_request->delete();
     
-                    if($user_request) {
+                    if($result) {
     
                         session()->flash('success', 'Product deleted Successfully!');
     
