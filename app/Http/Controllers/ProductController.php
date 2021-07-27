@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
@@ -25,9 +27,18 @@ class ProductController extends Controller
                     //fetch category
                     $categories = Category::where('category_status', 'active')->get();
 
+                    //fetch color
+                    $colors = Color::where('status', 1)->get();
+
+                    //fetch size
+                    $sizes = Size::where('status', 1)->get();
+                    
+
                     return view('admin/products/create_product', [
 
-                        'categories' => $categories
+                        'categories' => $categories,
+                        'colors' => $colors,
+                        'sizes' => $sizes,
                     ]);
                 }
 
