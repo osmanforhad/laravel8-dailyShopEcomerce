@@ -202,108 +202,110 @@
                </div>
             </div>
          </div>
-         <!-- Product Attribute Card will start from here -->
-         <div class="card">
-            <div class="card-header text-center">Add Product Attributes</div>
-            <div class="card-body">
-                <div class="form-group">
-                    <div class="row">
-                       <div class="col-md-2">
-                          <label for="sku" class="control-label mb-1">SKU</label>
-                          <input id="sku" name="sku" type="text" class="form-control"
-                             aria-required="true" aria-invalid="false">
-                          <span class="alret alert-danger" role="alert">
-                          @error('sku')
-                          {{$message}}
-                          @enderror
-                          </span>
-                       </div>
-                       <div class="col-md-2">
-                          <label for="mrp" class="control-label mb-1">MRP</label>
-                          <input id="mrp" name="mrp" type="text" class="form-control"
-                             aria-required="true" aria-invalid="false">
-                          <span class="alret alert-danger" role="alert">
-                          @error('mrp')
-                          {{$message}}
-                          @enderror
-                          </span>
-                       </div>
-                       <div class="col-md-2">
-                        <label for="price" class="control-label mb-1">Price</label>
-                        <input id="price" name="price" type="text" class="form-control"
-                           aria-required="true" aria-invalid="false">
-                        <span class="alret alert-danger" role="alert">
-                        @error('price')
-                        {{$message}}
-                        @enderror
-                        </span>
+         <!-- Product Attribute will start from here -->
+         <div class="card-header text-center" style="color:rgba(231, 26, 19, 0.815);">Add Product Attributes</div>
+         <div class="col-md-12" id="product_attr_box">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="row">
+                           <div class="col-md-2">
+                              <label for="sku" class="control-label mb-1">SKU</label>
+                              <input id="sku" name="sku" type="text" class="form-control"
+                                 aria-required="true" aria-invalid="false">
+                              <span class="alret alert-danger" role="alert">
+                              @error('sku')
+                              {{$message}}
+                              @enderror
+                              </span>
+                           </div>
+                           <div class="col-md-2">
+                              <label for="mrp" class="control-label mb-1">MRP</label>
+                              <input id="mrp" name="mrp" type="text" class="form-control"
+                                 aria-required="true" aria-invalid="false">
+                              <span class="alret alert-danger" role="alert">
+                              @error('mrp')
+                              {{$message}}
+                              @enderror
+                              </span>
+                           </div>
+                           <div class="col-md-2">
+                            <label for="price" class="control-label mb-1">Price</label>
+                            <input id="price" name="price" type="text" class="form-control"
+                               aria-required="true" aria-invalid="false">
+                            <span class="alret alert-danger" role="alert">
+                            @error('price')
+                            {{$message}}
+                            @enderror
+                            </span>
+                         </div>
+                         <div class="col-md-2">
+                            <label for="color_id" class="control-label mb-1">Color</label>
+                            <select class="form-control" name="color_id">
+                               <option value="">Select Color</option>
+                               @foreach ($colors as $color)
+                               <option value="{{$color->id}}">{{$color->color}}</option>
+                               @endforeach
+                            </select>
+                            <span class="alret alert-danger" role="alert">
+                            @error('color_id')
+                            {{$message}}
+                            @enderror
+                            </span>
+                         </div>
+                         <div class="col-md-2">
+                            <label for="size_id" class="control-label mb-1">Size</label>
+                            <select class="form-control" name="size_id">
+                               <option value="">Select Size</option>
+                               @foreach ($sizes as $size)
+                               <option value="{{$size->id}}">{{$size->size}}</option>
+                               @endforeach
+                            </select>
+                            <span class="alret alert-danger" role="alert">
+                            @error('size_id')
+                            {{$message}}
+                            @enderror
+                            </span>
+                         </div>
+                         <div class="col-md-2">
+                            <label for="qty" class="control-label mb-1">Qunatity</label>
+                            <input id="qty" name="qty" type="text" class="form-control"
+                               aria-required="true" aria-invalid="false">
+                            <span class="alret alert-danger" role="alert">
+                            @error('qty')
+                            {{$message}}
+                            @enderror
+                            </span>
+                         </div>
+                        </div>
                      </div>
-                     <div class="col-md-2">
-                        <label for="color_id" class="control-label mb-1">Color</label>
-                        <select class="form-control" name="color_id">
-                           <option value="">Select Color</option>
-                           @foreach ($colors as $color)
-                           <option value="{{$color->id}}">{{$color->color}}</option>
-                           @endforeach
-                        </select>
-                        <span class="alret alert-danger" role="alert">
-                        @error('color_id')
-                        {{$message}}
-                        @enderror
-                        </span>
-                     </div>
-                     <div class="col-md-2">
-                        <label for="size_id" class="control-label mb-1">Size</label>
-                        <select class="form-control" name="size_id">
-                           <option value="">Select Size</option>
-                           @foreach ($sizes as $size)
-                           <option value="{{$size->id}}">{{$size->size}}</option>
-                           @endforeach
-                        </select>
-                        <span class="alret alert-danger" role="alert">
-                        @error('size_id')
-                        {{$message}}
-                        @enderror
-                        </span>
-                     </div>
-                     <div class="col-md-2">
-                        <label for="qty" class="control-label mb-1">Qunatity</label>
-                        <input id="qty" name="qty" type="text" class="form-control"
-                           aria-required="true" aria-invalid="false">
-                        <span class="alret alert-danger" role="alert">
-                        @error('qty')
-                        {{$message}}
-                        @enderror
-                        </span>
-                     </div>
-                    </div>
-                 </div>
-                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label for="" class="control-label mb-1">Action</label>
-                              <button type="button" class="btn btn-success btn-lg">
+                     <div class="form-group">
+                        <div class="row">
+                           <div class="col-md-4">
+                              <label for="attr_image" class="control-label mb-1">Attr Image</label>
+                              <input id="attr_image" name="attr_image" type="file" class="form-control"
+                                 aria-required="true" aria-invalid="false" onchange="attrImagePreview(event)">
+                              <span class="alret alert-danger" role="alert">
+                              @error('attr_image')
+                              {{$message}}
+                              @enderror
+                              </span>
+                           </div>
+                           <div class="col-md-4">
+                              <!-- Previw uploaded image -->
+                              <img id="preview_attr_image" src="" class="preview_image_size"/>
+                           </div>
+                           <div class="col-md-2">
+                            <label for="" class="control-label mb-1">Add More</label>
+                              <button type="button" class="btn btn-success btn-lg" onclick="add_more_attr()">
                                   <i class="fa fa-plus"></i>&nbsp; More
                               </button>
                            </div>
-                       <div class="col-md-4">
-                          <label for="attr_image" class="control-label mb-1">Attr Image</label>
-                          <input id="attr_image" name="attr_image" type="file" class="form-control"
-                             aria-required="true" aria-invalid="false" onchange="attrImagePreview(event)">
-                          <span class="alret alert-danger" role="alert">
-                          @error('attr_image')
-                          {{$message}}
-                          @enderror
-                          </span>
-                       </div>
-                       <div class="col-md-4">
-                          <!-- Previw uploaded image -->
-                          <img id="preview_attr_image" src="" class="preview_image_size"/>
-                       </div>
-                    </div>
-                 </div>
-                 
-            </div>
+                        </div>
+                     </div>
+                     
+                </div>
+             </div>
          </div>
          <div>
             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
@@ -316,14 +318,26 @@
 @endsection
 @push('scripts')
 <script>
+    //js for product image privew
    var productImagePreview = function(event) {
        var preview_product_image = document.getElementById('preview_product_image');
        preview_product_image.src = URL.createObjectURL(event.target.files[0]);
    };
 
+  //js for attr image privew
    var attrImagePreview = function(event) {
        var preview_attr_image = document.getElementById('preview_attr_image');
        preview_attr_image.src = URL.createObjectURL(event.target.files[0]);
    };
+
+   //js function for add more attribute button click
+   function add_more_attr() {
+       var html='<div class="card"><div class="card-body"><div class="form-group"><div class="row"><div class="form-group"><div class="row">';
+
+       html+='</div></div></div></div></div></div>';
+
+       jQuery("#product_attr_box").append(html);
+    
+   }
 </script>
 @endpush
