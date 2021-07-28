@@ -10,7 +10,7 @@
 @endpush
 @section('content')
 <h1 class="mb10">Create Product</h1>
-<a href="{{ route('admin.category') }}">
+<a href="{{ route('admin.product') }}">
 <button type="button" class="btn btn-success">All Product</button>
 </a>
 <br>
@@ -211,22 +211,22 @@
                         <div class="row">
                            <div class="col-md-2">
                               <label for="sku" class="control-label mb-1">SKU</label>
-                              <input id="sku" name="sku" type="text" class="form-control"
+                              <input id="sku" name="sku[]" type="text" class="form-control"
                                  aria-required="true" aria-invalid="false" required>
                            </div>
                            <div class="col-md-2">
                               <label for="mrp" class="control-label mb-1">MRP</label>
-                              <input id="mrp" name="mrp" type="text" class="form-control"
+                              <input id="mrp" name="mrp[]" type="text" class="form-control"
                                  aria-required="true" aria-invalid="false" required>
                            </div>
                            <div class="col-md-2">
                             <label for="price" class="control-label mb-1">Price</label>
-                            <input id="price" name="price" type="text" class="form-control"
+                            <input id="price" name="price[]" type="text" class="form-control"
                                aria-required="true" aria-invalid="false" required>
                          </div>
                          <div class="col-md-2">
                             <label for="color_id" class="control-label mb-1">Color</label>
-                            <select id="color_id" class="form-control" name="color_id">
+                            <select id="color_id" class="form-control" name="color_id[]">
                                <option value="">Select Color</option>
                                @foreach ($colors as $color)
                                <option value="{{$color->id}}">{{$color->color}}</option>
@@ -235,7 +235,7 @@
                          </div>
                          <div class="col-md-2">
                             <label for="size_id" class="control-label mb-1">Size</label>
-                            <select id="size_id" class="form-control" name="size_id">
+                            <select id="size_id" class="form-control" name="size_id[]">
                                <option value="">Select Size</option>
                                @foreach ($sizes as $size)
                                <option value="{{$size->id}}">{{$size->size}}</option>
@@ -244,7 +244,7 @@
                          </div>
                          <div class="col-md-2">
                             <label for="qty" class="control-label mb-1">Qunatity</label>
-                            <input id="qty" name="qty" type="text" class="form-control"
+                            <input id="qty" name="qty[]" type="text" class="form-control"
                                aria-required="true" aria-invalid="false">
                          </div>
                         </div>
@@ -253,7 +253,7 @@
                         <div class="row">
                            <div class="col-md-4">
                               <label for="attr_image" class="control-label mb-1">Attr Image</label>
-                              <input id="attr_image" name="attr_image" type="file" class="form-control"
+                              <input id="attr_image" name="attr_image[]" type="file" class="form-control"
                                  aria-required="true" aria-invalid="false" onchange="attrImagePreview(event)">
                            </div>
                            <div class="col-md-4">
@@ -304,21 +304,21 @@
 
       var html='<div class="card" id="prodcut_attr_'+loop_count+'"><div class="card-body"><div class="form-group"><div class="row"><div class="form-group"><div class="row">';
 
-           html+='<div class="col-md-2"><label for="sku" class="control-label mb-1">SKU</label><input id="sku" name="sku" type="text" class="form-control" aria-required="true" aria-invalid="false" required></div>';
+           html+='<div class="col-md-2"><label for="sku" class="control-label mb-1">SKU</label><input id="sku" name="sku[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required></div>';
 
-           html+='<div class="col-md-2"><label for="mrp" class="control-label mb-1">MRP</label><input id="mrp" name="mrp" type="text" class="form-control" aria-required="true" aria-invalid="false" required></div>';
+           html+='<div class="col-md-2"><label for="mrp" class="control-label mb-1">MRP</label><input id="mrp" name="mrp[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required></div>';
 
-           html+='<div class="col-md-2"><label for="price" class="control-label mb-1">Price</label><input id="price" name="price" type="text" class="form-control" aria-required="true" aria-invalid="false" required></div>';
+           html+='<div class="col-md-2"><label for="price" class="control-label mb-1">Price</label><input id="price" name="price[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required></div>';
 
            var color_id_html = jQuery('#color_id').html();
-           html+='<div class="col-md-2"><label for="color_id" class="control-label mb-1">Color</label><select id="color_id" class="form-control" name="color_id">'+color_id_html+'</select></div>';
+           html+='<div class="col-md-2"><label for="color_id" class="control-label mb-1">Color</label><select id="color_id" class="form-control" name="color_id[]">'+color_id_html+'</select></div>';
 
            var size_id_html = jQuery('#size_id').html();
-           html+='<div class="col-md-2"><label for="size_id" class="control-label mb-1">Size</label><select id="size_id" class="form-control" name="size_id">'+size_id_html+'</select></div>';
+           html+='<div class="col-md-2"><label for="size_id" class="control-label mb-1">Size</label><select id="size_id" class="form-control" name="size_id[]">'+size_id_html+'</select></div>';
 
-           html+='<div class="col-md-2"><label for="qty" class="control-label mb-1">Quantity</label><input id="qty" name="qty" type="text" class="form-control" aria-required="true" aria-invalid="false"></div>';
+           html+='<div class="col-md-2"><label for="qty" class="control-label mb-1">Quantity</label><input id="qty" name="qty[]" type="text" class="form-control" aria-required="true" aria-invalid="false"></div>';
 
-           html+='<div class="col-md-4"><label for="attr_image" class="control-label mb-1">Attr Image</label><input id="attr_image" name="attr_image" type="file" class="form-control" aria-required="true" aria-invalid="false"></div>';
+           html+='<div class="col-md-4"><label for="attr_image" class="control-label mb-1">Attr Image</label><input id="attr_image" name="attr_image[]" type="file" class="form-control" aria-required="true" aria-invalid="false"></div>';
 
 
            html+='<div class="col-md-2"><label for="" class="control-label mb-1">Remove</label><button type="button" class="btn btn-danger btn-lg" onclick=remove_attr("'+loop_count+'")><i class="fa fa-minus"></i>&nbsp; Remove</button></div>';

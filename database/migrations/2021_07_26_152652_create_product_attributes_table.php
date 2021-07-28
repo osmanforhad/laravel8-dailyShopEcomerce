@@ -22,9 +22,9 @@ class CreateProductAttributesTable extends Migration
             $table->string('mrp');
             $table->string('price');
             $table->integer('qty');
-            $table->bigInteger('size_id')->unsigned()->nullable();
+            $table->bigInteger('size_id')->unsigned()->nullable();//should be integer not bigInteger
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
-            $table->bigInteger('color_id')->unsigned()->nullable();
+            $table->bigInteger('color_id')->unsigned()->nullable();//should be integer not bigInteger
             $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
             $table->timestamps();
         });

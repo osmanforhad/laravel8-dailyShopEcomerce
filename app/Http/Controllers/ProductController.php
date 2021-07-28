@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\ProductAttribute;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -45,6 +46,9 @@ class ProductController extends Controller
       
                 public function store_product(Request $request)
                 {
+                    // return $request->post();
+                    // die();
+
                     //input validation
                     $request->validate([
                         'name' => 'required | unique:products',
@@ -93,10 +97,41 @@ class ProductController extends Controller
                     }
     
                     $result = $userInput->save();
+
+                    //take saved product id to insert into product_attributes table
+                    $SavedProductIdForAttributeTable = $userInput->id;
+
+                    /**Start Logic for save product attributes */
+
+                    $prodcutAttrArr = new ProductAttribute();
+
+                    $skuArray = $request->input('sku');
+                    $mrpArray = $request->input('mrp');
+                    $priceArray = $request->input('price');
+                    $qtyArray = $request->input('qty');
+                    $color_idArray = $request->input('color_id');
+                    $size_idArray = $request->input('size_id');
+                    
+
+                    foreach($skuArray as $key => $value) {
+
+                        $prodcutAttrArr['product_id'] = $SavedProductIdForAttributeTable;
+                        $prodcutAttrArr['sku'] = $skuArray[$key];
+                        $prodcutAttrArr['image'] = 'test image';
+                        $prodcutAttrArr['mrp'] = $mrpArray[$key];
+                        $prodcutAttrArr['price'] = $priceArray[$key];
+                        $prodcutAttrArr['qty'] = $qtyArray[$key];
+                        $prodcutAttrArr['color_id'] = $color_idArray[$key];
+                        $prodcutAttrArr['size_id'] = $size_idArray[$key];
+                        
+                        $resultAttr = $prodcutAttrArr->save();
+                    }
+                    
+                    /**End Logic for product attributes */
     
-                    if($result) {
+                    if($result && $resultAttr) {
     
-                        session()->flash('success', 'Product created Successfully!');
+                        session()->flash('success', 'Product created Successfully! With Attributes');
     
                         return redirect()->route('admin.product');
                         
