@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
-use App\Models\ProductAttribute;
 use App\Models\Size;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
@@ -103,8 +103,6 @@ class ProductController extends Controller
 
                     /**Start Logic for save product attributes */
 
-                    $prodcutAttrArr = new ProductAttribute();
-
                     $skuArray = $request->input('sku');
                     $mrpArray = $request->input('mrp');
                     $priceArray = $request->input('price');
@@ -123,8 +121,9 @@ class ProductController extends Controller
                         $prodcutAttrArr['qty'] = $qtyArray[$key];
                         $prodcutAttrArr['color_id'] = $color_idArray[$key];
                         $prodcutAttrArr['size_id'] = $size_idArray[$key];
+
+                        $resultAttr = DB::table('product_attributes')->insert($prodcutAttrArr);
                         
-                        $resultAttr = $prodcutAttrArr->save();
                     }
                     
                     /**End Logic for product attributes */
