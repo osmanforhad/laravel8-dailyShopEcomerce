@@ -207,13 +207,18 @@
               <!-- Product Attribute will start from here -->
          <div class="card-header text-center" style="color:rgba(231, 26, 19, 0.815);">Add Product Attributes</div>
          <div class="col-md-12" id="product_attr_box">
+             @php
+                 $product_attr_box = 1;
+             @endphp
+
              @foreach ($selected_attributes['prodcutAttrArr'] as $key => $selected_attribute)
 
              <?php
              $productAttribute = (array)$selected_attribute; //convert object to array, its calld type casting
+             $product_attr_box_prev=$product_attr_box;
              ?>
 
-            <div class="card" id="prodcut_attr_1">
+            <div class="card" id="prodcut_attr_{{$product_attr_box++}}">
                 <div class="card-body">
                     <div class="form-group">
                         <div class="row">
@@ -276,12 +281,22 @@
                               <!-- Previw uploaded image -->
                               <img id="preview_attr_image" src="" class="preview_image_size"/>
                            </div>
+                           @if ($product_attr_box==2)
                            <div class="col-md-2">
                             <label for="" class="control-label mb-1">Add More</label>
                               <button type="button" class="btn btn-success btn-lg" onclick="add_more_attr()">
                                   <i class="fa fa-plus"></i>&nbsp; More
                               </button>
                            </div>
+                           @else
+                           <div class="col-md-2">
+                            <label for="" class="control-label mb-1">Remove</label>
+                              <button type="button" class="btn btn-danger btn-lg" onclick="remove_attr('{{ $product_attr_box_prev }}')">
+                                  <i class="fa fa-plus"></i>&nbsp; Remove
+                              </button>
+                           </div>
+                           @endif
+                           
                         </div>
                      </div>
                      
