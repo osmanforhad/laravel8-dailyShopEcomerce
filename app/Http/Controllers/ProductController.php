@@ -126,7 +126,7 @@ class ProductController extends Controller
                         
                     }
                     
-                    /**End Logic for product attributes */
+                    /**End Logic for save product attributes */
     
                     if($result && $resultAttr) {
     
@@ -138,20 +138,41 @@ class ProductController extends Controller
     
                 }
     
-                public function edit_product($slug)
+                public function edit_product($id)
                 {
                     //fetch category
                     $categories = Category::where('category_status', 'active')->get();
 
+                    //fetch color
+                    $colors = Color::where('status', 1)->get();
+
+                    //fetch size
+                    $sizes = Size::where('status', 1)->get();
+
                     //fetch product by id
-                    $selected_product = Product::where('slug', $slug)->first();
+                    $selected_product = Product::where('id', $id)->first();
+                    
+
+                    //fetch produt attributes
+                    $selected_attributes['prodcutAttrArr'] = DB::table('product_attributes')
+                                                            ->where(['product_id' => $id])->get();
+
+
+                    //$resultAttr = $selected_attribute['prodcutAttrArr']; 
+
+                        // echo '<pre>';
+                        // print_r($selected_attribute['prodcutAttrArr']);
+                        // die();
     
                     if($selected_product) {
     
                         return view('admin.products.product_edit', [
 
                             'categories' => $categories,
-                            'selected_product' => $selected_product
+                            'colors' => $colors,
+                            'sizes' => $sizes,
+                            'selected_product' => $selected_product,
+                            'selected_attributes' => $selected_attributes
 
                         ]);
                     }
