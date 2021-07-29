@@ -24,6 +24,14 @@
     <br>
    
     <div class="row">
+        @if (Session::has('success'))
+        <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                    {{ Session::get('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        @endif
         <div class="col-md-12">
             <form action="{{ url('admin/product/update/'.$selected_product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -291,9 +299,11 @@
                            @else
                            <div class="col-md-2">
                             <label for="" class="control-label mb-1">Remove</label>
-                              <button type="button" class="btn btn-danger btn-lg" onclick="remove_attr('{{ $product_attr_box_prev }}')">
-                                  <i class="fa fa-plus"></i>&nbsp; Remove
-                              </button>
+                              <a href="{{url('admin/product/product_attr_delete/')}}/{{ $productAttribute['id'] }}">
+                                <button type="button" class="btn btn-danger btn-lg">
+                                    <i class="fa fa-plus"></i>&nbsp; Remove
+                                </button>
+                              </a>
                            </div>
                            @endif
                            

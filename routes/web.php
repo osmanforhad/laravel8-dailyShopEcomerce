@@ -69,6 +69,7 @@ Route::group(['middleware' => 'admin_auth'], function() {
     Route::put('admin/product/update/{id}', [ProductController::class, 'update_product']);
     //Route::get('admin/product/delete/{id}', [ProductController::class, 'destroy_product']);
     Route::delete('admin/product/delete/{id}', [ProductController::class, 'destroy_product']);
+    Route::get('admin/product/product_attr_delete/{produt_attr_id}', [ProductController::class, 'destroy_product_attribute']);
 
 
     

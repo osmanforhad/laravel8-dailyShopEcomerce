@@ -270,4 +270,15 @@ class ProductController extends Controller
     
                 }
 
+                public function destroy_product_attribute($produt_attr_id)
+                {
+                    $result = DB::table('product_attributes')->where(['id' => $produt_attr_id])->delete();
+
+    
+                    if($result) {
+                        
+                        return redirect()->back()->with('success', 'Product Attribute deleted Successfully!');
+                    }
+                }
+
 }
