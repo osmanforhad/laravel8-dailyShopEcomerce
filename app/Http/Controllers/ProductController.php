@@ -153,16 +153,12 @@ class ProductController extends Controller
                     $selected_product = Product::where('id', $id)->first();
                     
 
+                /**Start Logic for Edit product attributes */
                     //fetch produt attributes
                     $selected_attributes['prodcutAttrArr'] = DB::table('product_attributes')
                                                             ->where(['product_id' => $id])->get();
 
-
-                    //$resultAttr = $selected_attribute['prodcutAttrArr']; 
-
-                        // echo '<pre>';
-                        // print_r($selected_attribute['prodcutAttrArr']);
-                        // die();
+              /**End Logic for Edit product attributes */
     
                     if($selected_product) {
     
@@ -187,7 +183,7 @@ class ProductController extends Controller
             
                   //input validation
                   $request->validate([
-                    'name' => 'required | unique:products',
+                    'name' => 'required',
                     //'slug' => 'required | unique:products',
                     'category_id' => 'required',
                     'brand' => 'required',
@@ -236,14 +232,62 @@ class ProductController extends Controller
                         //store the image data into db
                         $user_input->image = $fileName;
                     }
+
     
                     $result = $user_input->update();
-    
-                     if($result) {
+
+                    //take  product id to match  product_attribute with  product_attributes table
+                    $matchProductIdForAttributeTable = $user_input->id;
+
+                    /**Start Logic for Update product attributes */
+
+                    $product_attr_idArray = $request->input('product_attr_id');
+                    $skuArray = $request->input('sku');
+                    $mrpArray = $request->input('mrp');
+                    $priceArray = $request->input('price');
+                    $qtyArray = $request->input('qty');
+                    $color_idArray = $request->input('color_id');
+                    $size_idArray = $request->input('size_id');
+                    
+
+                    foreach($skuArray as $key => $value) {
+
+                        $prodcutAttrArr['product_id'] = $matchProductIdForAttributeTable;
+                        $prodcutAttrArr['sku'] = $skuArray[$key];
+                        $prodcutAttrArr['image'] = 'test image';
+                        $prodcutAttrArr['mrp'] = $mrpArray[$key];
+                        $prodcutAttrArr['price'] = $priceArray[$key];
+                        $prodcutAttrArr['qty'] = $qtyArray[$key];
+                        $prodcutAttrArr['color_id'] = $color_idArray[$key];
+                        $prodcutAttrArr['size_id'] = $size_idArray[$key];
+
+                        if($product_attr_idArray[$key] !=''){
+
+                            $updateProductAttribute = DB::table('product_attributes')->where(['id' => $product_attr_idArray[$key]])->update($prodcutAttrArr);
+
+                            if($updateProductAttribute) {
+                        
+                                return redirect()->back()->with('success', 'Product Attribute updated Successfully!');
+                            }
+                        } else {
+
+                            $saveNewAttribute = DB::table('product_attributes')->insert($prodcutAttrArr);
+
+                            if($saveNewAttribute) {
+                        
+                                return redirect()->back()->with('success', 'New Attribute Saved Successfully!');
+                            }
+                        }
+                        
+                    }
+                    /**End Logic for update product attributes */
+
+                    if($result) {
     
                         return redirect()->route('admin.product')->with('success', 'Product Updated Successfully');
     
                      }
+                  
     
                 }
     

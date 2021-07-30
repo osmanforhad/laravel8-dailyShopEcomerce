@@ -225,7 +225,9 @@
              $productAttribute = (array)$selected_attribute; //convert object to array, its calld type casting
              $product_attr_box_prev=$product_attr_box;
              ?>
-
+             <!-- this hidden id for update product attribute -->
+             <input type="hidden" id="product_attr_id" name="product_attr_id[]" value="{{ $productAttribute['id'] }}">
+            <!-- this hidden id for update product attribute -->
             <div class="card" id="prodcut_attr_{{$product_attr_box++}}">
                 <div class="card-body">
                     <div class="form-group">
@@ -339,7 +341,7 @@ function add_more_attr() {
 
    loop_count++;
 
-   var html='<div class="card" id="prodcut_attr_'+loop_count+'"><div class="card-body"><div class="form-group"><div class="row"><div class="form-group"><div class="row">';
+   var html='<input type="text" id="product_attr_id" name="product_attr_id[]"><div class="card" id="prodcut_attr_'+loop_count+'"><div class="card-body"><div class="form-group"><div class="row"><div class="form-group"><div class="row">';
 
         html+='<div class="col-md-2"><label for="sku" class="control-label mb-1">SKU</label><input id="sku" name="sku[]" type="text" class="form-control" aria-required="true" aria-invalid="false" required></div>';
 
