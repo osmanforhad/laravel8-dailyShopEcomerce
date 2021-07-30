@@ -51,7 +51,7 @@
                             <td>{{ $product->name }}</td>
                             <td>{{$product->fetchCategoryFromCategoryTable->category_name}}</td>
                             <td>
-                                <img src="{{ asset('uploads/products/'.$product->image) }}"
+                                <img src="{{ asset('uploads/products/feturePhoto/'.$product->image) }}"
                                      width="70px" height="70px" alt="{{ $product->name }}">
                             </td>
                             <td>{{ $product->brand }}</td>

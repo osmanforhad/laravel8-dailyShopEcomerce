@@ -58,7 +58,7 @@
                                     <label for="product_image" class="control-label mb-1">Image</label>
                                     <input type="file" name="product_image" class="form-control"
                                     aria-required="true" aria-invalid="false" onchange="loadFile(event)">
-                                        <img src="{{ asset('uploads/products/'.$selected_product->image) }}"
+                                        <img src="{{ asset('uploads/products/feturePhoto/'.$selected_product->image) }}"
                                              width="70px" height="70px" alt="{{ $selected_product->name }}">
                                      <span class="alret alert-danger" role="alert">
                                         @error('product_image')

@@ -46,9 +46,6 @@ class ProductController extends Controller
       
                 public function store_product(Request $request)
                 {
-                    // return $request->post();
-                    // die();
-
                     //input validation
                     $request->validate([
                         'name' => 'required | unique:products',
@@ -85,13 +82,14 @@ class ProductController extends Controller
                      $userInput->status = $request->input('status');
 
                     if ($request->hasFile('product_image')) {
+                        //take current image
                         $file = $request->file('product_image');
                         //get file extension
                         $extension = $file->getClientOriginalExtension();
                         //setup file name
                         $fileName = $userInput->name . '.' . $extension;
                         //upload file into the folder
-                        $file->move('uploads/products/', $fileName);
+                        $file->move('uploads/products/feturePhoto/', $fileName);
                         //store the image data into db
                         $userInput->image = $fileName;
                     }
@@ -115,12 +113,35 @@ class ProductController extends Controller
 
                         $prodcutAttrArr['product_id'] = $SavedProductIdForAttributeTable;
                         $prodcutAttrArr['sku'] = $skuArray[$key];
-                        $prodcutAttrArr['image'] = 'test image';
                         $prodcutAttrArr['mrp'] = $mrpArray[$key];
                         $prodcutAttrArr['price'] = $priceArray[$key];
                         $prodcutAttrArr['qty'] = $qtyArray[$key];
                         $prodcutAttrArr['color_id'] = $color_idArray[$key];
                         $prodcutAttrArr['size_id'] = $size_idArray[$key];
+
+                        //  $prodcutAttrArr['image'] = 'test image';
+                        if($request->hasFile("attr_image.$key")) {
+                            
+                        //take current image
+                        $attr_image=$request->file("attr_image.$key");
+                            //get file extension
+                        $extension = $attr_image->getClientOriginalExtension();
+                        //generate random nuber for image name
+                        $randomNumber = rand('1111', '9999');
+                        //setup file name
+                        $image_Name = $randomNumber. '.' .$extension;
+                        //upload file into the folder
+                        $request->file("attr_image.$key")->move('uploads/products/AttrPhoto/', $image_Name);
+                        //store the image data into db
+                        $prodcutAttrArr['image'] = $image_Name;
+                        
+                        } else {
+                            $prodcutAttrArr['image'] = 'image not uploaded!';
+                        }
+
+                        // echo '<pre>';
+                        // return $request->post();
+                        // die();
 
                         $resultAttr = DB::table('product_attributes')->insert($prodcutAttrArr);
                         
@@ -216,7 +237,7 @@ class ProductController extends Controller
                     if ($request->hasFile('product_image')) {
 
                         //define alreday exists image and delete it
-                        $destination = 'uploads/products/' . $user_input->image;
+                        $destination = 'uploads/products/feturePhoto/' . $user_input->image;
                         if (File::exists($destination)) {
                             
                             File::delete($destination);
@@ -228,7 +249,7 @@ class ProductController extends Controller
                         //setup file name
                         $fileName = $user_input->name . '.' . $extension;
                         //upload file into the folder
-                        $file->move('uploads/products/', $fileName);
+                        $file->move('uploads/products/feturePhoto/', $fileName);
                         //store the image data into db
                         $user_input->image = $fileName;
                     }
@@ -298,7 +319,7 @@ class ProductController extends Controller
                     $user_request = Product::find($id);
 
                 //define alreday exists image and delete it
-                    $destination = 'uploads/products/' . $user_request->image;
+                    $destination = 'uploads/products/feturePhoto/' . $user_request->image;
                     if (File::exists($destination)) {
                         File::delete($destination);
                     }
